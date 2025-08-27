@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/dashboardstyle.css">
+  <link rel="stylesheet" href="/css/profilestyle.css">
+  <link rel="stylesheet" href="/css/empmanagementstyle.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="logo-div">
+      <img class="logo" th:src="@{images/motorphlogo.png}">
+    </div>
+    <h2>MotorPH</h2>
+    <nav>
+      <a th:href="@{/dashboard}" class="active navbutton">Dashboard</a>
+      <a href="/profile" onclick="loadContent(event, '/profile'); setActiveNav(this);" class="navbutton">Profile</a>
+      <a href="/employees" onclick="loadContent(event, '/employees'); setActiveNav(this);" class="navbutton">Employees</a>
+      <a th:href="@{/attendance}" class="navbutton">Attendance</a>
+      <a th:href="@{/payslip}" class="navbutton">Payslip</a>
+      <form th:action="@{/logout}" method="post">
+        <button class="navbutton" type="submit">Logout</button>
+      </form>
+    </nav>
+  </aside>
+
+  <main class="main-content" id="main-content">
+    <header>
+      <h1>Dashboard</h1>
+    </header>
+
+    <!-- Dashboard Cards -->
+    <section class="cards">
+      <div class="card">
+        <h3>Users</h3>
+        <p>134</p>
+      </div>
+      <div class="card">
+        <h3>Sales</h3>
+        <p>₱24,000</p>
+      </div>
+      <div class="card">
+        <h3>Reports</h3>
+        <p>7</p>
+      </div>
+      <div class="card">
+        <h3>Tasks</h3>
+        <p>5 pending</p>
+      </div>
+    </section>
+
+    <!-- Chart Section -->
+    <section class="chart-section">
+      <h2>Monthly Sales Overview</h2>
+      <canvas id="dashboardChart"></canvas>
+    </section>
+  </main>
+</div>
+
+<script>
+  const ctx = document.getElementById('dashboardChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['January', 'February', 'March', 'April', 'May', 'June'],
+      datasets: [{
+        label: 'Sales (₱)',
+        data: [12000, 19000, 3000, 5000, 20000, 24000],
+        backgroundColor: '#2563eb',
+        borderRadius: 5,
+        barThickness: 40
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: {
+          labels: {
+            color: '#1a1a1a',
+            font: {
+              size: 14
+            }
+          }
+        }
+      },
+      scales: {
+        x: {
+          ticks: {
+            color: '#1a1a1a'
+          },
+          grid: {
+            display: false
+          }
+        },
+        y: {
+          beginAtZero: true,
+          ticks: {
+            color: '#1a1a1a'
+          },
+          grid: {
+            color: '#e5e7eb'
+          }
+        }
+      }
+    }
+  });
+</script>
+</body>
+</html>

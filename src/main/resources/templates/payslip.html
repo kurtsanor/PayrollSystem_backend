@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Payslip</title>
+    <link rel="stylesheet" href="/css/payslipstyle.css">
+</head>
+<body>
+<div class="dashboard">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="logo-div">
+            <img class="logo" src="/images/motorphlogo.png" alt="Logo">
+        </div>
+        <h2>MotorPH</h2>
+        <nav>
+            <a href="/dashboard">Dashboard</a>
+            <a href="/profile" class="navbutton">Profile</a>
+            <a href="/employees" class="navbutton">Employees</a>
+            <a href="/attendance" class="navbutton">Attendance</a>
+            <a href="/payslip" class="navbutton active">Payslip</a>
+            <form action="/logout" method="post">
+                <button class="navbutton" type="submit">Logout</button>
+            </form>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <header>
+            <h1>Payslip</h1>
+        </header>
+
+        <section class="payslip">
+            <div class="payslip-header">
+                <form th:action="@{/payslip/generate}" method="get">
+                    <input type="month" id="monthPicker" name="monthPicker" required>
+                    <button>Generate</button>
+                </form>
+            </div>
+
+            <div th:if="${payslip != null}" class="payslip-section">
+                <h3>Employee Details</h3>
+                <p><strong>Name: </strong><label th:text="${payslip.employee.firstName}"></label></p>
+                <p><strong>Position: </strong><label th:text="${payslip.employee.position.name}"></label></p>
+                <p><strong>Employee ID: </strong><label th:text="${payslip.employee.id}"></label></p>
+            </div>
+
+            <div th:if="${payslip != null}" class="payslip-section">
+                <h3>Earnings</h3>
+                <p><strong>Monthly Rate: </strong><label th:text="${#numbers.formatDecimal(payslip.employee.salary.basicSalary, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Hourly Rate: </strong><label th:text="${#numbers.formatDecimal(payslip.employee.salary.hourlyRate, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Hours Worked: </strong><label th:text="${#numbers.formatDecimal(payslip.hoursWorked, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Gross Income: </strong><label th:text="${#numbers.formatDecimal(payslip.grossPay, 1, 'COMMA', 2, 'POINT')}"></label></p>
+            </div>
+
+            <div th:if="${payslip != null}" class="payslip-section">
+                <h3>Benefits</h3>
+                <p><strong>Rice Subsidy: </strong><label th:text="${#numbers.formatDecimal(payslip.riceSubsidy, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Phone Allowance: </strong><label th:text="${#numbers.formatDecimal(payslip.phoneAllowance, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Clothing Allowance: </strong><label th:text="${#numbers.formatDecimal(payslip.clothingAllowance, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Total: </strong><label th:text="${#numbers.formatDecimal(payslip.totalAllowances, 1, 'COMMA', 2, 'POINT')}"></label></p>
+            </div>
+
+            <div th:if="${payslip != null}" class="payslip-section">
+                <h3>Deductions</h3>
+                <p><strong>Social Security System: </strong><label th:text="${#numbers.formatDecimal(payslip.sss, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>PhilHealth: </strong><label th:text="${#numbers.formatDecimal(payslip.philhealth, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Pag-IBIG: </strong><label th:text="${#numbers.formatDecimal(payslip.pagibig, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Tax: </strong><label th:text="${#numbers.formatDecimal(payslip.tax, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Total Deductions: </strong><label th:text="${#numbers.formatDecimal(payslip.totalDeductions, 1, 'COMMA', 2, 'POINT')}"></label></p>
+            </div>
+
+            <div th:if="${payslip != null}" class="payslip-section">
+                <h3>Summary</h3>
+                <p><strong>Gross Income: </strong><label th:text="${#numbers.formatDecimal(payslip.grossPay, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Benefits: </strong><label th:text="${#numbers.formatDecimal(payslip.totalAllowances, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Deductions: </strong><label th:text="${#numbers.formatDecimal(payslip.totalDeductions, 1, 'COMMA', 2, 'POINT')}"></label></p>
+                <p><strong>Take Home Pay: </strong><label th:text="${#numbers.formatDecimal(payslip.netPay, 1, 'COMMA', 2, 'POINT')}"></label></p>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

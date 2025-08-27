@@ -1,0 +1,44 @@
+<title>Employee</title>
+
+<header class="employees-header">
+  <h1>Employees</h1>
+</header>
+
+<!-- Employee Table -->
+<section class="employees-cards">
+  <div class="employees-semi-header">
+    <input type="text" placeholder="Enter employee id" id="searchbar" oninput="searchEmployee()">
+    <a th:href="@{employee-form}">Create Employee</a>
+  </div>
+
+  <div class="employees-table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Position</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody id="emp-table">
+      <tr th:each="employee : ${employees}">
+        <td th:text="${employee.id}"></td>
+        <td th:text="${employee.firstName}"></td>
+        <td th:text="${employee.lastName}"></td>
+        <td th:text="${employee.position.name}"></td>
+        <td>
+          <div class="employees-action-buttons">
+            <a class="employees-navbutton-edit" th:href="@{'/employees/edit/' + ${employee.id}}">Edit</a>
+            <form th:action="@{/delete}" method="post">
+              <input type="hidden" name="employeeId" th:value="${employee.id}">
+              <button type="submit" class="employees-navbutton delete">Delete</button>
+            </form>
+          </div>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>

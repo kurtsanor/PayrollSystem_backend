@@ -1,0 +1,121 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 50px;
+}
+
+.form-container {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 50%;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h3 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h4 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+hr {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    border-color: #ffffff;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+input, select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+label {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px; /* space between first and last name fields */
+    margin-bottom: 15px;
+}
+
+.form-group-name {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+button {
+    margin-top: 25px;
+    padding: 12px;
+    width: 100%;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: #fff;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+    font-weight: bold;
+}
+
+button:hover {
+  background-color: #1d4ed8;
+}
+
+.govid-form {
+    display: flex;
+    gap: 20px;
+}
+
+.govid-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /*flex = fill sides*/
+}
+
+.compensation-form {
+    display: flex;
+    gap: 20px;
+}
+
+.compensation-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>New Employee Form</title>
+    <link rel="stylesheet" href="/css/employee-form-style.css">
+    <script th:src="@{/js/script.js}"></script>
+</head>
+
+<body>
+<div class="form-container">
+    <h4>New Employee Form</h4>
+    <form id="employeeForm" th:action="*{id} == null ? @{/employees/create} : @{/employees/update}" th:object="${createEmployeeDTO}" method="post">
+        <h3>Personal Details</h3>
+        <div class="form-row">
+            <input type="hidden" th:field="*{id}">
+            <div class="form-group-name">
+                <label>First Name</label>
+                <input type="text" th:field="*{firstName}" required>
+            </div>
+            <div class="form-group-name" id="name-input">
+                <label>Last Name</label>
+                <input type="text" th:field="*{lastName}" required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Position</label>
+            <select th:field="*{position}">
+                <option th:each="pos: ${positions}" th:value="${pos.name}" th:text="${pos.name}"></option>
+            </select>
+        </div>
+        <hr>
+        <h3>Compensation</h3>
+        <div class="compensation-form">
+            <div class="compensation-group">
+                <label>Basic Salary</label>
+                <input type="number" th:field="*{basicSalary}" required>
+                <label>Gross Semi Monthly</label>
+                <input type="number" th:field="*{grossSemiMonthly}" required>
+                <label>Hourly Rate</label>
+                <input type="number" th:field="*{hourlyRate}" required>
+            </div>
+            <div class="compensation-group">
+                <label th:text="*{allowances[0].typeName}"></label>
+                <input type="hidden" th:field="*{allowances[0].typeName}">
+                <input th:field="*{allowances[0].amount}" type="number" required>
+
+                <label th:text="*{allowances[1].typeName}"></label>
+                <input type="hidden" th:field="*{allowances[1].typeName}">
+                <input th:field="*{allowances[1].amount}" type="number" required>
+
+                <label th:text="*{allowances[2].typeName}" >Clothing Allowance</label>
+                <input type="hidden" th:field="*{allowances[2].typeName}">
+                <input th:field="*{allowances[2].amount}" type="number" required>
+            </div>
+        </div>
+        <hr>
+        <h3>Government Ids</h3>
+        <div class="govid-form">
+            <div class="govid-group">
+                <label>Social Security System</label>
+                <input type="text" th:field="*{sss}" required>
+                <label>Philhealth</label>
+                <input type="text" th:field="*{philhealth}" required>
+            </div>
+            <div class="govid-group">
+                <label>Pagibig</label>
+                <input type="text" th:field="*{pagibig}" required>
+                <label>TIN</label>
+                <input type="text" th:field="*{tin}" required>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <button type="submit" th:text="*{id} == null ? 'Create Employee' : 'Update Employee'">Create Employee</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
