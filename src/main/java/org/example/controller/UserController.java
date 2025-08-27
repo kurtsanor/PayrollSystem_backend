@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.Map;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/", allowCredentials = "true")
+@CrossOrigin(origins = "https://motorphpayroll.netlify.app/", allowCredentials = "true")
 @RequestMapping("/users")
 public class UserController {
     @Autowired

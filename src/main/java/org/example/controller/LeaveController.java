@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = "https://motorphpayroll.netlify.app/")
 @RequestMapping("/leaves")
 public class LeaveController {
     @Autowired

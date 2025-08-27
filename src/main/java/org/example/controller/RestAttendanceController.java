@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = "https://motorphpayroll.netlify.app/")
 @RequestMapping("/attendance")
 public class RestAttendanceController {
     

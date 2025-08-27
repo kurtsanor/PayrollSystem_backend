@@ -22,7 +22,7 @@ import java.sql.SQLException;
 import java.time.YearMonth;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:5173/")
+@CrossOrigin(origins = "https://motorphpayroll.netlify.app/")
 @RequestMapping("/payroll")
 public class PayrollController {
 
